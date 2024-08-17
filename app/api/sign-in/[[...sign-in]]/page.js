@@ -47,7 +47,7 @@ export default function SignInPage() {
                 layout: {
                   termsPageUrl: 'https://clerk.com/terms',
                   signUpFallbackRedirectUrl: '/sign-up',  
-                  signInForceRedirectUrl: process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL         
+                  signInForceRedirectUrl: '/flashcards',        
                 }
               }}
             />

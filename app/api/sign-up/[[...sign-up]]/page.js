@@ -46,7 +46,9 @@ export default function SignUpPage() {
               appearance={{
                 layout: {
                   termsPageUrl: 'https://clerk.com/terms',
-                  signInFallbackRedirectUrl: '/sign-in',}
+                  signInFallbackRedirectUrl: '/sign-in',
+                  signInForceRedirectUrl: '/flashcards', 
+                }
               }}
             />
           </Box>
