@@ -7,15 +7,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useRouter } from 'next/router';
 
 
 
 function AppAppBar({ showCollections, showGenerate }) {
   const [open, setOpen] = React.useState(false);
+
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -84,17 +85,23 @@ function AppAppBar({ showCollections, showGenerate }) {
                   onClick={() => scrollToSection('features')}
                   sx={{ py: '6px', px: '12px' }}
                 >
-                  <Typography 
-                    variant="body2" 
-                    color="text.primary"
-                    sx={{
-                      fontWeight: 'bold',
-                      fontSize: '1.1rem',
-                      fontFamily: '"Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif',
-                    }}
-                  >
-                    Flashcard SaaS
-                  </Typography>
+                    <Button
+                      href='/'
+                      variant="text"
+                      sx={{
+                        color: 'text.primary',
+                        fontWeight: 'bold',
+                        fontSize: '1.1rem',
+                        fontFamily: '"Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif',
+                        textTransform: 'none',
+                        padding: 0,
+                        '&:hover': {
+                          textDecoration: 'none',
+                        },
+                      }}
+                    >
+                      Flashcard SaaS
+                    </Button>
                   </MenuItem>
               </Box>
             </Box>
