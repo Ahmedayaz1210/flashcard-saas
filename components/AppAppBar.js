@@ -78,7 +78,7 @@ function AppAppBar({ showCollections, showGenerate, showSignIn, showSignUp, show
               }}
             >
               
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Box sx={{ display: {xs: 'flex', md: 'flex' } }}>
                 <MenuItem
                   onClick={() => scrollToSection('features')}
                   sx={{ py: '6px', px: '12px' }}
@@ -105,7 +105,7 @@ function AppAppBar({ showCollections, showGenerate, showSignIn, showSignUp, show
             </Box>
             <Box
               sx={{
-                display: { xs: 'none', md: 'flex' },
+                display: { xs: 'flex', md: 'flex' },
                 gap: 0.5,
                 alignItems: 'center',
               }}
