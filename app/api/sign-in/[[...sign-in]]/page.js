@@ -43,11 +43,10 @@ export default function SignInPage() {
             </Typography>
             <SignIn 
             signUpUrl='/api/sign-up'
+            forceRedirectUrl= '/flashcards'
               appearance={{
                 layout: {
-                  termsPageUrl: 'https://clerk.com/terms',
-                  signUpFallbackRedirectUrl: '/sign-up',  
-                  signInForceRedirectUrl: 'https://flashcard-saas-zeta.vercel.app/flashcards',        
+                  termsPageUrl: 'https://clerk.com/terms',                          
                 }
               }}
             />
