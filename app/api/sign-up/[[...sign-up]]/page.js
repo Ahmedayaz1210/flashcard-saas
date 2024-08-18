@@ -47,7 +47,7 @@ export default function SignUpPage() {
                 layout: {
                   termsPageUrl: 'https://clerk.com/terms',
                   signInFallbackRedirectUrl: '/sign-in',
-                  signInForceRedirectUrl: '/flashcards', 
+                  signInForceRedirectUrl: 'https://flashcard-saas-zeta.vercel.app/flashcards', 
                 }
               }}
             />
