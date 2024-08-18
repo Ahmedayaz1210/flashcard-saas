@@ -2,7 +2,7 @@
 
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
-import { collection, doc, getDoc, writeBatch, setDoc } from 'firebase/firestore'
+import { doc, updateDoc, arrayRemove, collection, getDoc, deleteDoc, getDocs } from 'firebase/firestore';
 import { ThemeProvider } from '@mui/material/styles';
 import darkTheme from '../../components/darkTheme';
 import { useState, useEffect, use } from 'react'
@@ -10,12 +10,41 @@ import { db } from '@/firebase'
 import { Box, Card, CardActionArea, CardContent, Container, Grid, Typography, CssBaseline, Button } from '@mui/material'
 import { Delete as DeleteIcon, } from '@mui/icons-material';
 import AppAppBar from "../../components/AppAppBar";
+
+
 export default function Flashcards(){
     const { isLoaded, isSignedIn, user } = useUser()
     const [flashcards, setFlashcards] = useState([])
     const [loading, setLoading] = useState(true);
     const router = useRouter()
 
+    const deleteCollection = async (name) => {
+      if (!user) return;
+    
+      const userDocRef = doc(db, 'users', user.id);
+    
+      try {
+        // 1. Remove the flashcard from the user's list
+        await updateDoc(userDocRef, {
+          flashcards: arrayRemove({ name: name })
+        });
+    
+        // 2. Delete all documents in the collection
+        const collectionRef = collection(db, 'users', user.id, name);
+        const querySnapshot = await getDocs(collectionRef);
+        const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
+        await Promise.all(deletePromises);
+    
+        // 3. Update local state
+        setFlashcards(prevFlashcards => 
+          prevFlashcards.filter(flashcard => flashcard.name !== name)
+        );
+    
+        console.log(`Collection "${name}" and its contents deleted successfully`);
+      } catch (error) {
+        console.error("Error deleting collection: ", error);
+      }
+    };
     useEffect(() => {
         async function getFlashcards() {
           if (!user) return
@@ -73,7 +102,7 @@ export default function Flashcards(){
             <Button
               variant="contained"
               size="small"
-              onClick={() => handleDelete(flashcard.name)}
+              onClick={() => deleteCollection(flashcard.name)}
               sx={{
                 backgroundColor: '#80deea',
                 color: 'white',
