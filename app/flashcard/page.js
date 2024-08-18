@@ -49,7 +49,7 @@ export default function Flashcard() {
         <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <AppAppBar showCollections={true} 
-  showGenerate={true}/>
+  showGenerate={true} showSignIn={false} showSignUp={false} showSignOut={true}/>
         <Box width="100vw" sx={{mt:15}}>
         <Typography variant="h4" component="h1" sx={{ mt: 4, textAlign: 'center', fontSize: 'clamp(1.5rem, 10vw, 2.5rem)',
             fontWeight: 'bold',

@@ -10,13 +10,11 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useRouter } from 'next/router';
+import { SignOutButton, useAuth } from '@clerk/nextjs'
 
-
-
-function AppAppBar({ showCollections, showGenerate }) {
+function AppAppBar({ showCollections, showGenerate, showSignIn, showSignUp, showSignOut }) {
   const [open, setOpen] = React.useState(false);
-
+  const { sessionId } = useAuth()
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -139,28 +137,48 @@ function AppAppBar({ showCollections, showGenerate }) {
                 </>
               )}
               
-              <Button
-                color="primary"
-                variant="text"
-                size="small"
-                component="a"
-                href="api\sign-in"
+              {showSignIn && (
+                <>
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small"
+                    component="a"
+                    href="api\sign-in"
+                    sx={{marginRight: 0}}
+                  >
+                    Sign in
+                  </Button>
+                  <Divider orientation="vertical" flexItem />
+                </>
+              )}
+              {showSignUp && (
+                <>
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small"
+                    component="a"
+                    href="api\sign-up"
+                  >
+                    Sign up
+                  </Button>
+                  {showSignOut && <Divider orientation="vertical" flexItem />}
+
+                </>
                 
-                sx={{marginRight: 0}}
-              >
-                Sign in
-              </Button>
-              <Divider orientation="vertical" flexItem />
-              <Button
-                color="primary"
-                variant="text"
-                size="small"
-                component="a"
-                href="api\sign-up"
-                sx={{marginLeft: '10px'}}
-              >
-                Sign up
-              </Button>
+              )}
+              {showSignOut && (
+                <SignOutButton 
+                  signOutOptions={{ sessionId }}>
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small">
+                    Sign out
+                  </Button>
+                </SignOutButton>
+              )}
             </Box>
           </Toolbar>
         </Container>
@@ -172,11 +190,17 @@ function AppAppBar({ showCollections, showGenerate }) {
 AppAppBar.propTypes = {
   showCollections: PropTypes.bool,
   showGenerate: PropTypes.bool,
+  showSignIn: PropTypes.bool,
+  showSignUp: PropTypes.bool,
+  showSignOut: PropTypes.bool,
 };
 
 AppAppBar.defaultProps = {
   showCollections: false,
   showGenerate: false,
+  showSignIn: true,
+  showSignUp: true,
+  showSignOut: false,
 };
 
 export default AppAppBar;

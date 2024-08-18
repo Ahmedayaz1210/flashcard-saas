@@ -98,7 +98,8 @@ const saveFlashcards = async () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <AppAppBar showCollections={true} 
-  showGenerate={true}/>
+  showGenerate={true} showSignIn={false} showSignUp={false} showSignOut={true}
+  />
     <Container maxWidth="md" sx={{mt:15}}>
       <Box sx={{ my: 4 }}>
       <Typography

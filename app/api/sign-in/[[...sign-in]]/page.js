@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClerkProvider, SignIn } from "@clerk/nextjs";
+import {SignIn } from "@clerk/nextjs";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
