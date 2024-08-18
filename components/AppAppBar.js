@@ -153,7 +153,7 @@ function AppAppBar({ showCollections, showGenerate }) {
               <Divider orientation="vertical" flexItem />
               <Button
                 color="primary"
-                variant="contained"
+                variant="text"
                 size="small"
                 component="a"
                 href="api\sign-up"

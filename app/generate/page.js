@@ -117,7 +117,7 @@ const saveFlashcards = async () => {
         <TextField
           value={text}
           onChange={(e) => setText(e.target.value)}
-          label="Enter text"
+          placeholder="Enter text"
           fullWidth
           multiline
           rows={4}
